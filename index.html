@@ -1,0 +1,128 @@
+<html>
+	<head>
+		<title> Money Management</title>
+		<link rel="stylesheet" href="style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+
+		<nav class="nav">
+			<img id="menuImg" src="image/menu.PNG"/>
+			<ul>
+				<li class="nav-links" onclick="navTab(event, 'home')" id="defaultSelect">Home</li>
+				<li class="nav-links" onclick="navTab(event, 'income')">Income<p>$ <span class="total-format" id="in-total">0</span></p></li>
+				<li class="nav-links" onclick="navTab(event, 'expenses')">Expenses<p>$ <span id="ex-total" class="total-format">0</span></p></li>
+				<li class="nav-links">Balance <p>$ <span id="bal-total" class="total-format">0</span></p></li>
+			</ul>
+		</nav>
+		<div id="home" class="format-div">
+			<table id='list'>
+				<th>Heading</th>
+				<th>Amount</th>
+				<th>Category</th>
+			</table>
+			<img class="add" src="image/bluePlus.PNG"/>
+			<button type="button"  class="tips-button">Tips</button> 
+
+		</div>
+
+		<!--income page-->
+		<div id="income" class="format-div">
+
+			<nav class="nav">
+				<ul>
+					<li class="income-category" id="salary" onclick="incomeCategory('salary','income')"><img src="image/salary.PNG"><p>Salary</p></li>
+					<li class="income-category" id="rent" onclick="incomeCategory('rent','income')"><img src="image/rent.PNG"><p>Rent</p></li>
+					<li class="income-category" id="dividend" onclick="incomeCategory('dividend','income')"><img src="image/devident.PNG"><p>Dividend</p></li>
+				</ul>
+			</nav>
+			<img class="add" src="image/bluePlus.PNG"/>
+			<button type="button" class="tips-button">Tips</button> 
+		</div>
+		<!--end of income page-->
+
+		<div id="add-income-cat">
+			<form id="form">
+				<h4 id=category-name></h4>
+				<lable>Description</lable>
+
+				<input type="text" name="description" id="description" required/>
+
+				<lable>Amount</lable>
+				<input type="number" name="amount" id="amount" step="0.01" required/>
+
+				<input type="submit" value="Add" id='submit'/>
+				<input type="button" value="Cancel" id='cancel'/>
+
+			</form>
+		</div>
+
+		<!--expenses page-->
+		<div id="expenses" class="format-div">
+
+			<nav class="nav">
+				<ul>
+					<li onclick="incomeCategory('food','expenses')"><img src="image/food.PNG"><p>Food</p></li>
+					<li onclick="incomeCategory('education','expenses')"><img src="image/education.PNG"><p>Education</p></li>
+					<li onclick="incomeCategory('travel','expenses')"><img src="image/travel.PNG"><p>Travel</p></li>
+					<li onclick="incomeCategory('gift','expenses')"><img src="image/gift.PNG"><p>Gift</p></li>
+					<li onclick="incomeCategory('car','expenses')"><img src="image/car.PNG"><p>Car</p></li>
+					<li onclick="incomeCategory('shopping','expenses')"><img src="image/shopping.PNG"><p>Shoping</p></li>
+				</ul>
+			</nav>
+			<img class="add" src="image/bluePlus.PNG"/>
+			<button type="button" class="tips-button">Tips</button> 
+		</div>
+		<!--end of expenses page-->
+		<aside id="aside" >
+			<div id="menu">
+			<button class="close">X</button>
+			<ul>
+				<li id="login">Log in</li>
+				<li>Profile</li>
+				<li>Settings</li>
+				<li>Tips</li>
+			</ul>
+			</div>
+		</aside>
+		
+		<div id="login-page">
+			
+			<div class="form">
+				<button class="close-login">X</button>
+				<h2>Log In</h2>
+				Email:
+				<input type="text" name="Email"/>
+				Password:
+				<input type="text" name="Password"/>
+				<button>Log in</button>
+				<p id="signup-button">New User</p>	
+			</div>
+		</div>
+		
+		<div id="signup-page">
+			
+			<div class="form">
+				<button class="close-signup">X</button>
+				<h2>Sign up</h2>
+				Name:
+				<input type="text" name="Email"/>
+				Email:
+				<input type="text" name="Email"/>
+				Password:
+				<input type="text" name="Password"/>
+				Confirm password:
+				<input type="text" name="Password"/>
+				<br>
+				<button>Sign up</button>
+				
+			</div>
+		</div>
+
+
+
+		<script src="scripts.js">
+
+		</script>
+	</body>
+</html>

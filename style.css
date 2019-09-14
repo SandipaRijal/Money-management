@@ -1,0 +1,308 @@
+/*homa page*/
+body{
+	font-family:"Arial" , sans-serif; 
+	height:100%
+	width:100%;
+}
+#menuImg{
+	
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin-left: 10px;
+	border-radius:0px;
+}
+
+.tips-button{
+	border:none;
+	padding:10px 20px;
+	margin-bottom:20px;
+	position:relative;
+	left:45%;
+	font-size:1em;
+	background:none;
+}
+nav{
+	clear: both;
+	background-color: antiquewhite;
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+    box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  margin:10px;
+  cursor: pointer;
+}
+
+#list{
+width:100%;
+text-align: center;
+}
+
+.add{
+	
+	width: 60px;
+	margin: 15% 45% 20% 45%;
+}
+
+/* table */
+
+#list {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#list td, #list th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#list tr:nth-child(even){background-color: #f2f2f2;}
+
+#list tr:hover {background-color: #ddd;}
+
+#list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #9e8f75;
+  color: white;
+}
+
+/*login page*/
+#login-page{
+	position:fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	border-radius: 2px;
+	padding: 5% 0 0;
+	margin:auto;
+	background-color: rgba(33,33,33,.9);
+	display: none;
+}
+
+#login-page h2{
+	text-align: center;
+}
+
+#login-page .close-login{
+	font-weight: bold;
+	width:25px;
+	font-size: 1.3em;
+	border:none;
+	padding: 5px;
+	position: relative;
+	top:40%;
+	left:40%;
+}
+.form{
+	max-width: 360px;
+	margin:0 auto 100px;
+	padding: 30px;
+	text-align: center;
+	background-color:white;
+}
+.form input{
+	width: 100%;
+	margin: 0 0 15px;
+	padding:15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+.form button{
+  background-color: #9e8f75; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+/*end of login page*/
+
+
+/*sign up page*/
+#signUp-page{
+	position:fixed;
+	top:0;
+	left:0;
+	width: 100%;
+	border-radius: 2px;
+	margin:auto;
+	padding-top:2%;
+	background-color: rgba(33,33,33,.9);
+	display: none;
+	
+}
+
+#signup-page .close-signup{
+	font-weight: bold;
+	width:25px;
+	font-size: 1.3em;
+	border:none;
+	padding: 5px;
+	position: relative;
+	top:40%;
+	left:40%;
+}
+#signUp-page h2{
+	text-align: center;
+}
+#signup-button{
+	cursor:pointer;
+	color:blue;
+	text-decoration:underline;
+}
+.active{	
+background-color: #cbbca1;
+}
+/*end of login page*/
+#income{
+
+	
+}
+
+#add-income-cat{
+	display:none;
+	width:100%;
+	height:100%;
+	background-color:#808080c9;
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+
+#form{
+	padding: 20px;
+	width:50%;
+	background-color: white;
+	position:relative;
+	top:30%;
+	left:20%;
+	animation-name: animatetop;
+  	animation-duration: 0.4s
+}
+
+/*income page*/
+.nav img{
+	width: 40px;
+	height: 40px;
+	border-radius:100%;
+}
+
+
+/*format div */
+.format-div{
+display:none;
+max-width: 1024px;
+margin-left: auto;
+margin-right: auto;
+background-color: antiquewhite;
+height:auto;
+}
+/*end of format-div*/
+
+/* navlinks format main nav top one */
+
+.nav-links{
+	padding:10px;
+}
+
+.total-format{
+	font-weight: bold;
+}
+
+/* Aside Menu */
+#aside{
+	display: none;
+	width:100%;
+	height:100%;
+	background-color:#808080c9;
+	position:fixed;
+	top:0px;
+	left:0px;
+}
+#menu {
+	background-color:azure;
+	width: 0px;
+	height:500px;
+	position: absolute;
+	left:120px;
+	top:50px;
+	animation-name: animatetop;
+  	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {left: -120px; opacity: 0}
+  to {left: 120; opacity: 1}
+}
+
+#aside ul{
+	list-style-type:none;
+	
+}
+#aside ul li{
+	float:none;
+	padding: 20px 10px;
+}
+#aside .close{
+	font-weight: bold;
+	width:25px;
+	font-size: 1.3em;
+	background-color:azure;
+	border:none;
+	padding: 5px;
+	position: absolute;
+	top:0px;
+	right:20px;
+}
+
+#form input[type=text], input[type=number]{
+	 
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+}
+#form input[type=submit] {
+  background-color: #9e8f75; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#form #cancel{
+background-color: gray; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+	
