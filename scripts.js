@@ -2,7 +2,7 @@ function navTab(evt, tabName) {
   // Declare all variables
   var i, formatDiv, navLinks;
 
-  // Get all elements with class="formatdiv" and hide them
+  // Get all elements with class="formatdiv" and hide themlq
   formatDiv = document.querySelectorAll(".format-div");
   for (i = 0; i < formatDiv.length; i++) {
     formatDiv[i].style.display = "none";
@@ -46,8 +46,8 @@ submit.addEventListener('submit', function(event){
 	var description = document.querySelector('#description');
 	var amount = document.querySelector('#amount');
 	
-	
-	appendList(description.value,amount.value, category);
+	//call appendList to add transaction in html
+	appendList(description.value,amount.value, category, division);
 	total(amount.value, division)
 	
 	var catAdd = document.querySelector('#add-income-cat');
@@ -72,20 +72,37 @@ function total(amount, division){
 	}
 	
 	// balance
-	document.querySelector('#bal-total').innerHTML = incometotal - expensestotal ; 
+		var balance = incometotal - expensestotal ;
+	
+	if(balance/incometotal <= 0.10){
+		alert("your expenses is more than 90%");
+	}
+	document.querySelector('#bal-total').innerHTML =  balance;
 	
 	
 }
-function appendList(description, amount, category){
+function appendList(description, amount, category, division){
 	var nodeTR = document.createElement("TR");
+	var datatype = document.createAttribute("data-type");
+	datatype.value=division;
+	nodeTR.setAttributeNode(datatype);
 	var nodeTD1 = document.createElement("TD");
 	var nodeTD2 = document.createElement("TD");
 	var nodeTD3 = document.createElement("TD");
+	var nodeTD4 = document.createElement("TD");
+	var editBtn = document.createElement("BUTTON");
+	var deleteBtn = document.createElement("BUTTON");
+	editBtn.className="edit";
+	deleteBtn.className="delete";
+	
   	var textnodedescription = document.createTextNode(description);
 	var textnodeamount = document.createTextNode(amount);
 	var textnodesign = document.createTextNode('-');
 	var textnodedollor = document.createTextNode('$');
 	var textnodecategory = document.createTextNode(category);
+	var textnodeeditbtn = document.createTextNode("Edit");
+	var textnodedeletebtn= document.createTextNode("Delete");
+	
 	
 	nodeTD1.appendChild(textnodedescription);
 	if(division ==='expenses'){
@@ -97,11 +114,46 @@ function appendList(description, amount, category){
 		nodeTD2.appendChild(textnodeamount);
 	}
 	nodeTD3.appendChild(textnodecategory);
+	
+	editBtn.appendChild(textnodeeditbtn);
+	deleteBtn.appendChild(textnodedeletebtn);
+	nodeTD4.appendChild(editBtn);
+	nodeTD4.appendChild(deleteBtn);
+	
 	nodeTR.appendChild(nodeTD1);
 	nodeTR.appendChild(nodeTD2);
 	nodeTR.appendChild(nodeTD3);
+	nodeTR.appendChild(nodeTD4);
+	
 	
   	document.getElementById("list").appendChild(nodeTR);
+	
+	//setTimeout(delItem,1000);
+	delItem();
+}
+
+//delete
+function delItem(){
+	var del = document.querySelectorAll(".delete");
+	
+	for(var i=0; i<del.length; i++){
+		del[i].onclick=function(){
+			var firstParent = this.parentElement;
+			var secondParent = firstParent.parentElement;
+			console.log(secondParent.getAttribute("data-type"));
+			console.log(secondParent.childNodes[1].innerHTML);
+			var division = secondParent.getAttribute("data-type");
+			var amount = secondParent.childNodes[1].innerHTML;
+			
+			if(division ==="expenses"){
+			total(-parseFloat(amount.slice(2)), division );
+			}else{
+				total(-parseFloat(amount.slice(1)), division );
+			}
+			secondParent.style.display="none";
+			
+		}
+	}
 }
 
 // Aside menu//
@@ -151,3 +203,6 @@ var signup= document.querySelector('#signup-button');
 document.querySelector('.close-signup').addEventListener('click', function(){
 	document.querySelector('#signup-page').style.display="none";
 });
+
+//edit transactions
+
