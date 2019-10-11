@@ -2,12 +2,15 @@
 	<head>
 		<title> Money Management</title>
 		<link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+        
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-
+        <div class="container">
+        <img id="menuImg" src="image/menu.PNG"/>
 		<nav class="nav">
-			<img id="menuImg" src="image/menu.PNG"/>
+			
 			<ul>
 				<li class="nav-links" onclick="navTab(event, 'home')" id="defaultSelect">Home</li>
 				<li class="nav-links" onclick="navTab(event, 'income')">Income<p>$ <span class="total-format" id="in-total">0</span></p></li>
@@ -15,16 +18,25 @@
 				<li class="nav-links">Balance <p>$ <span id="bal-total" class="total-format">0</span></p></li>
 			</ul>
 		</nav>
+            
+            <!--- Chart -->
+        
 		<div id="home" class="format-div">
+            <div id="chart-place">
+            <canvas id="chart"></canvas>
+            </div>
+            
 			<table id='list'>
+                <!--
 				<th>Heading</th>
 				<th>Amount</th>
 				<th>Category</th>
-				<th>Edit/Delete</th>
+                <th>Date</th>
+				<th>Delete</th>
+                -->
 			</table>
-			<img class="add" src="image/bluePlus.PNG"/>
-			<button type="button"  class="tips-button">Tips</button> 
-
+            			
+			
 		</div>
 
 		<!--income page-->
@@ -37,8 +49,8 @@
 					<li class="income-category" id="dividend" onclick="incomeCategory('dividend','income')"><img src="image/devident.PNG"><p>Dividend</p></li>
 				</ul>
 			</nav>
-			<img class="add" src="image/bluePlus.PNG"/>
-			<button type="button" class="tips-button">Tips</button> 
+			
+			
 		</div>
 		<!--end of income page-->
 
@@ -51,12 +63,18 @@
 
 				<lable>Amount</lable>
 				<input type="number" name="amount" id="amount" step="0.01" required/>
-
+                <lable>Date</lable>
+                <input type="date" id="start" name="trip-start" required min="2000-01-01" max="2029-12-31">
+                
 				<input type="submit" value="Add" id='submit'/>
 				<input type="button" value="Cancel" id='cancel'/>
 
 			</form>
 		</div>
+        
+        <!--end of income page-->
+
+		
 
 		<!--expenses page-->
 		<div id="expenses" class="format-div">
@@ -71,10 +89,13 @@
 					<li onclick="incomeCategory('shopping','expenses')"><img src="image/shopping.PNG"><p>Shoping</p></li>
 				</ul>
 			</nav>
-			<img class="add" src="image/bluePlus.PNG"/>
-			<button type="button" class="tips-button">Tips</button> 
+			
+			 
 		</div>
+        
+       
 		<!--end of expenses page-->
+        
 		<aside id="aside" >
 			<div id="menu">
 			<button class="close">X</button>
@@ -82,7 +103,7 @@
 				<li id="login">Log in</li>
 				<li>Profile</li>
 				<li>Settings</li>
-				<li>Tips</li>
+				<li id="tip">Tips</li>
 			</ul>
 			</div>
 		</aside>
@@ -119,10 +140,23 @@
 				
 			</div>
 		</div>
+        <div id="tip-page">
+            <div id="tip">
+                <button class="close-tip">X</button>
+                <h2>Tips</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            </div>
+        
+        </div>
+        
+ </div>
 
-
-		<script src="scripts.js">
-
-		</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+		<script src="scripts.js"></script>
 	</body>
 </html>

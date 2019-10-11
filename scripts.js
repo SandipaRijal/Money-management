@@ -35,9 +35,11 @@ function incomeCategory(cat, div){
 	
 	category = cat;
 	division = div;
+    
 }
 
 //display form to add income or expenses
+
 var submit=document.getElementById('form');
 
 submit.addEventListener('submit', function(event){
@@ -45,9 +47,13 @@ submit.addEventListener('submit', function(event){
 
 	var description = document.querySelector('#description');
 	var amount = document.querySelector('#amount');
-	
+	var date = document.querySelector("#start").value;
 	//call appendList to add transaction in html
-	appendList(description.value,amount.value, category, division);
+    date = date.split('-');
+    newdate = date[2] + "/" + date[1] + "/" + date[0];
+	appendList(description.value,amount.value, newdate,category, division);
+    
+    
 	total(amount.value, division)
 	
 	var catAdd = document.querySelector('#add-income-cat');
@@ -57,10 +63,13 @@ submit.addEventListener('submit', function(event){
 });
 
 
+
+
 // this function totals expenses or income and display in respective division.
+var incometotal= parseFloat(document.querySelector('#in-total').innerHTML);
+var expensestotal= parseFloat(document.querySelector('#ex-total').innerHTML);
 function total(amount, division){
-	var incometotal= parseFloat(document.querySelector('#in-total').innerHTML);
-	var expensestotal= parseFloat(document.querySelector('#ex-total').innerHTML);
+	
 	if (division === 'income'){
 	
 	incometotal +=parseFloat(amount);
@@ -75,13 +84,13 @@ function total(amount, division){
 		var balance = incometotal - expensestotal ;
 	
 	if(balance/incometotal <= 0.10){
-		alert("your expenses is more than 90%");
+		alert("Your expenses is more than 90%");
 	}
 	document.querySelector('#bal-total').innerHTML =  balance;
-	
+	chart();
 	
 }
-function appendList(description, amount, category, division){
+function appendList(description, amount, date, category, division){
 	var nodeTR = document.createElement("TR");
 	var datatype = document.createAttribute("data-type");
 	datatype.value=division;
@@ -89,19 +98,19 @@ function appendList(description, amount, category, division){
 	var nodeTD1 = document.createElement("TD");
 	var nodeTD2 = document.createElement("TD");
 	var nodeTD3 = document.createElement("TD");
+    var nodeTD5 = document.createElement("TD");
 	var nodeTD4 = document.createElement("TD");
-	var editBtn = document.createElement("BUTTON");
 	var deleteBtn = document.createElement("BUTTON");
-	editBtn.className="edit";
 	deleteBtn.className="delete";
 	
   	var textnodedescription = document.createTextNode(description);
 	var textnodeamount = document.createTextNode(amount);
+    var textnodedate = document.createTextNode(date);
 	var textnodesign = document.createTextNode('-');
 	var textnodedollor = document.createTextNode('$');
 	var textnodecategory = document.createTextNode(category);
-	var textnodeeditbtn = document.createTextNode("Edit");
-	var textnodedeletebtn= document.createTextNode("Delete");
+	var textnodedeletebtn= document.createTextNode("-");
+    
 	
 	
 	nodeTD1.appendChild(textnodedescription);
@@ -115,14 +124,15 @@ function appendList(description, amount, category, division){
 	}
 	nodeTD3.appendChild(textnodecategory);
 	
-	editBtn.appendChild(textnodeeditbtn);
+    nodeTD5.appendChild(textnodedate);
+	
 	deleteBtn.appendChild(textnodedeletebtn);
-	nodeTD4.appendChild(editBtn);
 	nodeTD4.appendChild(deleteBtn);
 	
 	nodeTR.appendChild(nodeTD1);
 	nodeTR.appendChild(nodeTD2);
 	nodeTR.appendChild(nodeTD3);
+    nodeTR.appendChild(nodeTD5);
 	nodeTR.appendChild(nodeTD4);
 	
 	
@@ -130,31 +140,36 @@ function appendList(description, amount, category, division){
 	
 	//setTimeout(delItem,1000);
 	delItem();
+    
 }
 
-//delete
+//delete list item
 function delItem(){
 	var del = document.querySelectorAll(".delete");
 	
 	for(var i=0; i<del.length; i++){
 		del[i].onclick=function(){
-			var firstParent = this.parentElement;
-			var secondParent = firstParent.parentElement;
-			console.log(secondParent.getAttribute("data-type"));
-			console.log(secondParent.childNodes[1].innerHTML);
-			var division = secondParent.getAttribute("data-type");
-			var amount = secondParent.childNodes[1].innerHTML;
-			
-			if(division ==="expenses"){
-			total(-parseFloat(amount.slice(2)), division );
-			}else{
-				total(-parseFloat(amount.slice(1)), division );
-			}
-			secondParent.style.display="none";
+            var confirmToDelete= confirm("Are you sure?");
+            if(confirmToDelete){
+                var firstParent = this.parentElement;
+                var secondParent = firstParent.parentElement;
+                console.log(secondParent.getAttribute("data-type"));
+                console.log(secondParent.childNodes[1].innerHTML);
+                var division = secondParent.getAttribute("data-type");
+                var amount = secondParent.childNodes[1].innerHTML;
+
+                if(division ==="expenses"){
+                total(-parseFloat(amount.slice(2)), division );
+                }else{
+                    total(-parseFloat(amount.slice(1)), division );
+                }
+                secondParent.remove();
+            }
 			
 		}
 	}
 }
+
 
 // Aside menu//
 var icon= document.querySelector('#menuImg');
@@ -204,5 +219,42 @@ document.querySelector('.close-signup').addEventListener('click', function(){
 	document.querySelector('#signup-page').style.display="none";
 });
 
-//edit transactions
 
+//tip page show
+
+	var tip= document.querySelector('#tip');
+	tip.addEventListener('click',function(){
+		document.querySelector('#tip-page').style.display='block';
+		sideMenu.style.display='none';
+	});
+// login close
+document.querySelector('.close-tip').addEventListener('click', function(){
+	document.querySelector('#tip-page').style.display="none";
+});
+
+// chart
+
+function chart(){
+let mychart = document.querySelector('#chart').getContext('2d');
+    document.querySelector('#chart-place').style.display="block";
+    let massChart = new Chart(mychart, {
+               type:'pie',
+                data:{
+                    labels:['Income','Expenses'],
+                    datasets:[{
+                        label:'Income',
+                        data:[incometotal,expensestotal],
+                        backgroundColor: ['green','red'],
+                        
+                        
+                    }], 
+                     },
+                
+                options:{
+                    title:{
+                        //display:true,
+                        //text:'see text'
+                    }
+                }
+            });
+}

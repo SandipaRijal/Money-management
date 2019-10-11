@@ -1,15 +1,26 @@
 /*homa page*/
 body{
 	font-family:"Arial" , sans-serif; 
-	height:100%
+	height:100%;
 	width:100%;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.container{
+   padding: 1em 1em;
+    background-color:#dedede;
+    width:100%;
+    box-sizing:border-box;
+    height:100%;
 }
 #menuImg{
 	
 	width: 40px;
 	height: 40px;
 	float: left;
-	margin-left: 10px;
+	margin: 10px 0;
 	border-radius:0px;
 }
 
@@ -24,12 +35,16 @@ body{
 }
 nav{
 	clear: both;
-	background-color: antiquewhite;
-	max-width: 1024px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 20px;
+    background-color: #f5f0d5;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 6px;
+    margin-bottom: 4px;
     box-sizing: border-box;
+    border: 1px solid #ded598;
+    border-radius: 6px;
+    box-shadow: 2px 2px 3px 0px #adadad;
 }
 
 ul {
@@ -41,14 +56,11 @@ ul {
 
 li {
   float: left;
-  margin:10px;
+  margin-left:10px;
   cursor: pointer;
 }
 
-#list{
-width:100%;
-text-align: center;
-}
+
 
 .add{
 	
@@ -62,10 +74,11 @@ text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+   font-size: .75em;
 }
 
 #list td, #list th {
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding: 8px;
 }
 
@@ -114,6 +127,7 @@ text-align: center;
 	padding: 30px;
 	text-align: center;
 	background-color:white;
+    box-sizing: border-box;
 }
 .form input{
 	width: 100%;
@@ -135,6 +149,43 @@ text-align: center;
 }
 /*end of login page*/
 
+/*tip page */
+#tip-page{
+	position:fixed;
+	top:0;
+	left:0;
+	width: 100%;
+    height:100%;
+	border-radius: 2px;
+	margin:auto;
+	padding-top:2%;
+	background-color: rgba(33,33,33,.9);
+	display: none;
+	
+}
+
+#tip-page #tip{
+	max-width: 425px;
+    max-height:530px;
+	margin:0 auto 100px;
+	padding: 30px;
+	text-align: center;
+	background-color:white;
+    box-sizing: border-box;
+    line-height: 2em;
+    overflow:auto;
+}
+
+#tip-page .close-tip{
+	font-weight: bold;
+	width:25px;
+	font-size: 1.3em;
+	border:none;
+	padding: 5px;
+	position: relative;
+	top:40%;
+	left:40%;
+}
 
 /*sign up page*/
 #signUp-page{
@@ -185,18 +236,20 @@ background-color: #cbbca1;
 	position:fixed;
 	top:0px;
 	left:0px;
+    padding: 6em 0 0 0;
 }
+
+
 
 #form{
 	padding: 20px;
-	width:50%;
+	max-width:50%;
 	background-color: white;
-	position:relative;
-	top:30%;
-	left:20%;
+	margin: 0 auto;
 	animation-name: animatetop;
   	animation-duration: 0.4s
 }
+
 
 /*income page*/
 .nav img{
@@ -209,18 +262,19 @@ background-color: #cbbca1;
 /*format div */
 .format-div{
 display:none;
-max-width: 1024px;
+min-width: 300px;
 margin-left: auto;
 margin-right: auto;
 background-color: antiquewhite;
-height:auto;
+height: calc(100% - 26%);
 }
 /*end of format-div*/
 
 /* navlinks format main nav top one */
 
 .nav-links{
-	padding:10px;
+	padding:4px;
+    text-align: center;
 }
 
 .total-format{
@@ -238,11 +292,11 @@ height:auto;
 	left:0px;
 }
 #menu {
-	background-color:azure;
+	background-color:#f5f0d5;
 	width: 0px;
 	height:500px;
 	position: absolute;
-	left:120px;
+	left:20px;
 	top:50px;
 	animation-name: animatetop;
   	animation-duration: 0.4s
@@ -251,7 +305,7 @@ height:auto;
 /* Add Animation */
 @keyframes animatetop {
   from {left: -120px; opacity: 0}
-  to {left: 120; opacity: 1}
+  to {left: 20; opacity: 1}
 }
 
 #aside ul{
@@ -266,7 +320,7 @@ height:auto;
 	font-weight: bold;
 	width:25px;
 	font-size: 1.3em;
-	background-color:azure;
+	background-color:#f5f0d5;
 	border:none;
 	padding: 5px;
 	position: absolute;
@@ -274,7 +328,7 @@ height:auto;
 	right:20px;
 }
 
-#form input[type=text], input[type=number]{
+#form input[type=text], input[type=number], input[type=date]{
 	 
   width: 100%;
   padding: 12px 20px;
@@ -304,5 +358,19 @@ background-color: gray;
   font-size: 16px;
 }
 
+/*  Chart */
+#chart-place {
+    max-width:500px;
+    display:none;
+    margin-bottom:10px;
+}
+
+.delete{
+    background-color:red;
+    color:white;
+    border: none;
+    padding: 2 12px;
+    
+}
 
 	
