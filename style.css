@@ -33,6 +33,24 @@ body{
 	font-size:1em;
 	background:none;
 }
+#username{
+	font-weight: bold;
+    position: absolute;
+    right: 36px;
+    top: 27px;
+    padding: 10px;
+    border-radius: 25px;
+    background-color: red;
+    color: white;
+}
+#head{
+	width: 100%;
+    padding: 5px;
+    background-color: #ecc574;
+    border-radius: 8px;
+    height: 63px;
+    box-sizing: border-box;
+}
 nav{
 	clear: both;
     background-color: #f5f0d5;
@@ -327,7 +345,9 @@ height: calc(100% - 26%);
 	top:0px;
 	right:20px;
 }
-
+#aside #logout{
+	display:none;
+}
 #form input[type=text], input[type=number], input[type=date]{
 	 
   width: 100%;

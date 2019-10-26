@@ -196,8 +196,8 @@ closebutton.addEventListener('click',function(){
 //login page show
 
 
-	var login= document.querySelector('#login');
-	login.addEventListener('click',function(){
+	var loginlink= document.querySelector('#login-link');
+	loginlink.addEventListener('click',function(){
 		document.querySelector('#login-page').style.display='block';
 		sideMenu.style.display='none';
 	});
@@ -206,19 +206,91 @@ document.querySelector('.close-login').addEventListener('click', function(){
 	document.querySelector('#login-page').style.display="none";
 });
 
+var loginbtn= document.querySelector("#login");
+loginbtn.addEventListener('click', function(){
+	let boolresult = login();
+	if(boolresult){
+	document.querySelector('#login-page').style.display='none';
+	
+	}
+
+});
+
+// display username at the top of the page.
+if(sessionStorage.getItem('userdetail')){
+document.querySelector('#username').innerHTML=JSON.parse(sessionStorage.getItem("userdetail"))[0];
+document.querySelector("#logout").style.display="block";
+}
+
+//verify and login
+function login(){
+	
+	let loginemail = document.querySelector("#loginemail");
+	let loginpassword = document.querySelector("#loginpassword");
+	// now verify the detail
+	if(loginemail.value !== savedata[1] || loginpassword.value !== savedata[2]){
+		alert("email or password did not matched");
+		return false;
+	}else{
+		document.querySelector('#defaultSelect').click();
+		sessionStorage.setItem('userdetail',JSON.stringify(savedata))
+		document.querySelector('#username').innerHTML=JSON.parse(sessionStorage.getItem("userdetail"))[0];
+		document.querySelector("#logout").style.display="block";
+		loginemail.value="";
+		loginpassword.value="";
+		return true;
+	}
+}
+
+//log out
+let logout = document.querySelector("#logout");
+logout.addEventListener('click',function(){
+	sessionStorage.removeItem('userdetail');
+	location.reload(true);
+
+});
 //sign up show
 
 
-var signup= document.querySelector('#signup-button');
-	signup.addEventListener('click',function(){
+var signupbtn= document.querySelector('#signup-button');
+	signupbtn.addEventListener('click',function(){
 		document.querySelector('#signup-page').style.display='block';
 		document.querySelector('#login-page').style.display='none';
+				
 	});
 // login close
 document.querySelector('.close-signup').addEventListener('click', function(){
 	document.querySelector('#signup-page').style.display="none";
 });
 
+// now sign up 
+var signupsave = document.querySelector("#signup");
+signupsave.addEventListener('click', function(){
+	let booleanresult = signup(); 
+	if(booleanresult)
+		document.querySelector('#signup-page').style.display='none';
+});
+
+var savedata=[];
+function signup(){
+	let name = document.querySelector("#signupname");
+	let email = document.querySelector("#signupemail");
+	let password = document.querySelector("#signuppassword");
+	let confirmpassword = document.querySelector("#signupconfirmpassword");
+	if (password.value !== confirmpassword.value){
+		document.querySelector("#message").innerHTML="password did not matched";
+		return false;
+	}else{
+		savedata=[name.value,email.value,password.value];
+		name.value="";
+		email.value="";
+		password.value="";
+		confirmpassword.value="";
+		return true;
+	}
+}
+
+//sign up page end
 
 //tip page show
 

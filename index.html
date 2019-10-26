@@ -8,7 +8,10 @@
 	</head>
 	<body>
         <div class="container">
+		<div id="head">
         <img id="menuImg" src="image/menu.PNG"/>
+		<span id="username"></span>	
+		</div>
 		<nav class="nav">
 			
 			<ul>
@@ -100,10 +103,12 @@
 			<div id="menu">
 			<button class="close">X</button>
 			<ul>
-				<li id="login">Log in</li>
+				<li id="login-link">Log in</li>
+				<li id="logout">Logout</li>
 				<li>Profile</li>
 				<li>Settings</li>
 				<li id="tip">Tips</li>
+			
 			</ul>
 			</div>
 		</aside>
@@ -114,10 +119,10 @@
 				<button class="close-login">X</button>
 				<h2>Log In</h2>
 				Email:
-				<input type="text" name="Email"/>
+				<input id="loginemail"type="text" name="email"/>
 				Password:
-				<input type="text" name="Password"/>
-				<button>Log in</button>
+				<input id="loginpassword" type="password" name="password"/>
+				<button id="login">Log in</button>
 				<p id="signup-button">New User</p>	
 			</div>
 		</div>
@@ -128,15 +133,16 @@
 				<button class="close-signup">X</button>
 				<h2>Sign up</h2>
 				Name:
-				<input type="text" name="Email"/>
+				<input id="signupname" type="text" name="name" required/>
 				Email:
-				<input type="text" name="Email"/>
+				<input id="signupemail" type="text" name="email" required/>
 				Password:
-				<input type="text" name="Password"/>
+				<input id="signuppassword" type="password" name="password" required/>
 				Confirm password:
-				<input type="text" name="Password"/>
+				<input id="signupconfirmpassword" type="password" name="confirmpassword" required/>
+				<p id="message"></p>
 				<br>
-				<button>Sign up</button>
+				<button id="signup">Sign up</button>
 				
 			</div>
 		</div>
